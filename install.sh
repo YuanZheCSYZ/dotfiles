@@ -1,16 +1,22 @@
 #!/bin/bash
 
-# Generate .vimrc
-if [ -e ~/.vimrc ]; then
-    echo "Backup existing vimrc to ~/vimrc_bk"
-    mv ~/.vimrc ~/vimrc_bk
-fi
-ln -s vimrc ~/.vimrc
+# Generate dot files
+for conf in vimrc tmux.conf zshrc; do
+    if [ -e ~/.${conf} ]; then
+        echo "Backup existing  to ~/${conf}_bk"
+        mv ~/.${conf} ~/${conf}_bk
+    fi
+    rm -f ~/.${conf}
+    ln -s ${conf} ~/.${conf}
+done
 
 # Install Vundle
 if [ ! -e ~/.vim/bundle ]; then
     mkdir -P ~/.vim/bundle
 fi
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+if [ ! -e ~/.vim/bundle/Vundle.vim ]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
 
 
