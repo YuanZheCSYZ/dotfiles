@@ -137,7 +137,7 @@ set foldnestmax=10 " deepest fold is 10 levels
 set nofoldenable " don't fold by default
 set foldlevel=1
 " Enable folding with the spacebar
-nnoremap <space> za
+"nnoremap <space> za
 
 "let g:SimpylFold_docstring_preview=2
 
@@ -152,7 +152,9 @@ set ttyfast
 "set t_ti= t_te=
 
 " set a map leader for more key combos
-let mapleader = ','
+"let mapleader = ','
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
 
 " 打开文件时始终跳转到上次光标所在位置
 autocmd BufReadPost *
