@@ -1,4 +1,5 @@
 #!/bin/bash
+REPO_DIR=`pwd`
 
 # Generate dot files
 for conf in vimrc tmux.conf zshrc; do
@@ -7,7 +8,9 @@ for conf in vimrc tmux.conf zshrc; do
         mv ~/.${conf} ~/${conf}_bk
     fi
     rm -f ~/.${conf}
-    ln -s ${conf} ~/.${conf}
+    pushd ~
+    ln -s ${REPO_DIR}/${conf} ~/.${conf}
+    popd
 done
 
 # Install Vundle
